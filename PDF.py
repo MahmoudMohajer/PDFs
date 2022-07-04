@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+from math import factorial
 
 
 def underride(d, **options):
@@ -33,4 +34,11 @@ class PDF(pd.Series):
             return (n/self.shape[0]).sort_index()
         return n.sort_index()
 
+    def combination(self,n, k):
+        result = factorial(n)/(factorial(k)*factorial(n-k))
+        return result
+
+    def binom(self, n, k, p):
+        result = self.combination(n, k)*(p**k)*(1-p)**(n-k)
+        
 
