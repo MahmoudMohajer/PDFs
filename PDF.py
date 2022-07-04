@@ -41,7 +41,7 @@ class PDF(pd.Series):
     def binom(self, n, k, p):
         if p > 1:
             raise Exception("Probabily should be between 0 and 1")
-        elif k > p:
+        elif k > n:
             raise Exception("number of options should be smaller than all options")
         result = self.combination(n, k)*(p**k)*(1-p)**(n-k)
         return result
