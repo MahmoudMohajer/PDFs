@@ -62,4 +62,43 @@ class PDF(pd.Series):
         x = np.arange(0, n+1)
         y = np.array([self.binom(n, i, p) for i in x])
         return (x,y)
+    
+        
+    def binsum(self,length,p, size):
+        """this method first creates an array of all arrays returned by binary array
+        genrator 'lbiner' then it returns sum of each array in a numpy array,
+        which lists all sums. then you can see the binomial distribution for a 
+        given success rate.
+
+        Args:
+            length (int): it is length of each array to be created by array-
+            generator function 'lbiner'
+            p (float): probability of success between 0-1
+            size (int): the number of samples to generate
+
+        Returns:
+            numpy.ndarray: returns an array of sum of successes in each sample-
+            space 
+        """
+        def lbiner(size, p):
+            "creates an array of returnees of biner function given the size"
+            def biner(number, p):
+                """returns a binary number for given random number"""
+                if (p > 1) or (p < 0):
+                    raise Exception('Probablity should be between 0 and 1')
+                if number < p:
+                    return 1
+                elif number >= p:
+                    return 0
+
+            vbiner = np.vectorize(biner) #vectorizes the function to work with numpy arrays
+            r = np.random.random
+            l = np.array([r() for i in range(size)])
+            brnli = vbiner(l, p)
+            return brnli
+
+        pulls = np.array([lbiner(length, p) for i in range(size)])
+        pull_result = np.array([x.sum() for x in pulls])
+        return pull_result
+
 
