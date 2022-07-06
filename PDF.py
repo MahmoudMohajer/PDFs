@@ -45,4 +45,21 @@ class PDF(pd.Series):
             raise Exception("number of options should be smaller than all options")
         result = self.combination(n, k)*(p**k)*(1-p)**(n-k)
         return result
+    
+    def binomic_plot(self,n,p):
+        """this function calculates all probabilities for all 
+        values given the success rate
+
+        Args:
+            n (int): number of total values to find the binomial probability
+            p (float): probability of success, or success rate
+
+        Returns:
+            tuple: returns a tuple of values one for values from range 0 to number
+            of values, and second array for probablities regarding each value.
+        """
+    
+        x = np.arange(0, n+1)
+        y = np.array([self.binom(n, i, p) for i in x])
+        return (x,y)
 
