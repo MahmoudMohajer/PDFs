@@ -101,4 +101,21 @@ class PDF(pd.Series):
         pull_result = np.array([x.sum() for x in pulls])
         return pull_result
 
+    def normal(self,x,mu=0,sigma=1):
+        """this a method which returns values based on normal distribution
+        function
+
+        Args:
+            x (float): input of number to get the normal distribution values
+            mu (float, optional): this the mean of distrobution. Defaults to 0.
+            sigma (int, optional): standard deviationof distribution. Defaults to 1.
+
+        Returns:
+            float: this the pdf of given value x
+        """
+        Pisqrt = np.sqrt(2*np.pi)
+        result = np.exp(-(x-mu)**2 / 2 / sigma ** 2) / (Pisqrt*sigma)
+        return result
+        
+
 
