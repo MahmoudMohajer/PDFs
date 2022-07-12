@@ -1,6 +1,6 @@
 import pandas as pd
 import numpy as np
-from math import factorial
+from math import factorial, erf
 
 
 def underride(d, **options):
@@ -108,13 +108,27 @@ class PDF(pd.Series):
         Args:
             x (float): input of number to get the normal distribution values
             mu (float, optional): this the mean of distrobution. Defaults to 0.
-            sigma (int, optional): standard deviationof distribution. Defaults to 1.
+            sigma (int, optional): standard deviation of distribution. Defaults to 1.
 
         Returns:
             float: this the pdf of given value x
         """
         Pisqrt = np.sqrt(2*np.pi)
         result = np.exp(-(x-mu)**2 / 2 / sigma ** 2) / (Pisqrt*sigma)
+        return result
+    
+    def normal_cdf(self ,x, mu=0, sigma=1):
+        """returns normal cdf of given value "x"
+
+        Args:
+            x (float): the value you want to get the cdf of
+            mu (float, optional): this is the mean of the sample. Defaults to 0.
+            sigma (float, optional): this is the standard deviation of the sample. Defaults to 1.
+
+        Returns:
+            float: the cdf of the given value x
+        """
+        result = 1 + erf((x-mu) / np.sqrt(2) / sigma) / 2
         return result
         
 
