@@ -131,7 +131,7 @@ class PDF(pd.Series):
         result = 1 + erf((x-mu) / np.sqrt(2) / sigma) / 2
         return result
     
-    def poisson(LAMBDA, x):
+    def poisson(self,LAMBDA, x):
         """This method is giving probability of event happening based on a Poisson
         Distribution.
 
@@ -145,6 +145,24 @@ class PDF(pd.Series):
         """
         result = np.exp(-LAMBDA)*((LAMBDA**x)/factorial(x))
         return result
-        
+    
+    def poisson_cdf(self,LAMBDA, value):
+        """This method gives the cummulative distribution function of a given
+        value from a Poisson distribution.
+
+        Args:
+            LAMBDA (float): the expected value of Poisson distribution
+            value (int): positive integers and zero to get cummulative
+            distribution fo given values
+
+        Returns:
+            float: cummulative distribution of the given value
+        """
+        p = []
+        for x in range(value):
+            ps = self.poisson(LAMBDA, x)
+            p.append(ps)
+
+        return sum(p)
 
 
