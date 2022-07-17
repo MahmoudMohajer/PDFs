@@ -130,6 +130,21 @@ class PDF(pd.Series):
         """
         result = 1 + erf((x-mu) / np.sqrt(2) / sigma) / 2
         return result
+    
+    def poisson(LAMBDA, x):
+        """This method is giving probability of event happening based on a Poisson
+        Distribution.
+
+        Args:
+            LAMBDA (flaot): this the expected value from a Poisson distribution
+            x (int): it is a positive integer for finding the probability of given
+            value
+
+        Returns:
+            float: probability of event happening given expected value
+        """
+        result = np.exp(-LAMBDA)*((LAMBDA**x)/factorial(x))
+        return result
         
 
 
