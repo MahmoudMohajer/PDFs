@@ -181,4 +181,23 @@ class PDF(pd.Series):
         mio = 1/LAMBDA
         result = mio * np.exp(-mio * value)
         return result
+    
+    def exponent_cdf(LAMBDA, value):
+        """this the method for giving the cdf of the exponential distribution 
+        funtion
+
+        Args:
+            LAMBDA (float): 0-positve infinity, as expected value or average
+            value (float): the value of an event to find the cummulative 
+            distribution function
+
+        Returns:
+            float: the output is cummulative distribution probability of given
+            event.
+        """
+        if value < 0:
+            return 0
+        mio = 1/LAMBDA
+        result = 1 - np.exp((-1)*mio * value)
+        return result
 
