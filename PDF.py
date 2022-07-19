@@ -165,4 +165,20 @@ class PDF(pd.Series):
 
         return sum(p)
 
+    def exponent(LAMBDA, value):
+        """this method gives the pmf of exponential distribution functions
+
+        Args:
+            LAMBDA (float): it can take 0-positive infinity as inputs and this
+            input is the average or expected value
+            value (float): it is the value which we want to understant the probabilty of
+
+        Returns:
+            float: exponential probability of the event given the rate(lambda)
+        """
+        if value < 0:
+            return 0
+        mio = 1/LAMBDA
+        result = mio * np.exp(-mio * value)
+        return result
 
